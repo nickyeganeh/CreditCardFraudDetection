@@ -26,7 +26,7 @@ X_test = sc.fit_transform(X_test)
 
 print("<<< TRAINING MODEL >>>")
 # MODEL TRAINING
-gbc = XGBClassifier()
+gbc = GradientBoostingClassifier()
 gbc.fit(X_train, y_train)
 print("<<< MODEL IS TRAINED >>>")
 
