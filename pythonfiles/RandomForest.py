@@ -26,7 +26,7 @@ X_test = sc.fit_transform(X_test)
 
 print("<<< TRAINING MODEL >>>")
 # MODEL TRAINING
-rfc = XGBClassifier()
+rfc = RandomForestClassifier()
 rfc.fit(X_train, y_train)
 print("<<< MODEL IS TRAINED >>>")
 
