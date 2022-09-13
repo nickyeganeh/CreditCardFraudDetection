@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd 
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_recall_fscore_support
-from sklean.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
