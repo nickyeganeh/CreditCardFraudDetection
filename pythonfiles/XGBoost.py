@@ -14,7 +14,7 @@ print("<<< MODULES ARE IMPORTED >>>")
 print("<<< LOADING TRAIN AND TEST DATA >>>")
 # TRAIN AND TEST DATA
 X = pd.read_csv("../train-test_data/X.csv")
-y = pd.read_csv("../train-test_data/y.csv")
+y = pd.read_csv("../train-test_data/y.csv").Class
 print("<<< TRAIN AND TEST DATA ARE LOADED >>>")
 
 
