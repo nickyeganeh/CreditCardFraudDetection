@@ -32,6 +32,6 @@ print("<<< MODEL IS TRAINED >>>")
 
 print("<<< SAVING MODEL >>>")
 # SAVE MODEL
-joblib.dump(xgbc, '../models/xgbc.sav')
+joblib.dump(xgbc, 'xgbc.sav')
 print("<<< MODEL SAVED >>>")
 print("<<< DONE >>>")

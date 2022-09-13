@@ -5,29 +5,33 @@
 print("<<< IMPORTING MODULES >>>")
 import numpy as np
 import pandas as pd 
-from sklearn.metrics import f1_score
-from sklearn.metrics import precision_recall_fscore_support
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import AdaBoostClassifier
 import joblib
 print("<<< MODULES ARE IMPORTED >>>")
 
 print("<<< LOADING TRAIN AND TEST DATA >>>")
 # TRAIN AND TEST DATA
-X_train = np.array(pd.read_csv("../train-test_data/X_train.csv"))
-X_test = np.array(pd.read_csv("../train-test_data/X_test.csv"))
-y_train = np.array(pd.read_csv("../train-test_data/y_train.csv"))
-y_test = np.array(pd.read_csv("../train-test_data/y_test.csv"))
+X = pd.read_csv("../train-test_data/X.csv")
+y = pd.read_csv("../train-test_data/y.csv").Class
 print("<<< TRAIN AND TEST DATA ARE LOADED >>>")
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .25, random_state = 1)
+
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.fit_transform(X_test)
 
 print("<<< TRAINING MODEL >>>")
 # MODEL TRAINING
-abc = AdaBoostClassifier()
+abc = XGBClassifier()
 abc.fit(X_train, y_train)
 print("<<< MODEL IS TRAINED >>>")
 
 print("<<< SAVING MODEL >>>")
 # SAVE MODEL
-joblib.dump(abc, '../models/abc.sav')
+joblib.dump(abc, 'abc.sav')
 print("<<< MODEL SAVED >>>")
 print("<<< DONE >>>")
