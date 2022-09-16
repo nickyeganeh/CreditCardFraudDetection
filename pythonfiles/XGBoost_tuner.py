@@ -9,7 +9,7 @@ from imblearn.over_sampling import SMOTE
 print("<<< LOADING TRAINING DATA >>>")
 # TRAIN AND TEST DATA
 pipeline_X_train = pd.read_csv("../train-test_data/pipeline_X_train.csv")
-pipline_y_train = pd.read_csv("../train-test_data/pipeline_y_train.csv).Class
+pipline_y_train = pd.read_csv("../train-test_data/pipeline_y_train.csv").Class
 print("<<< TRAINING DATA LOADED >>>")
 
 print("<<< PERFORMING GRIDSEARCH >>>")
