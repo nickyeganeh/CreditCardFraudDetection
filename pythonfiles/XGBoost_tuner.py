@@ -18,7 +18,6 @@ model = Pipeline([
         ('classification', XGBClassifier())
     ])
 
-grid = GridSearchCV()
 params = {"n_estimators" : [100, 200, 300],
 		"learning_rate" : [0.05, 0.10, 0.15, 0.20, 0.25, 0.30],
 		"scale_pos_neg" : [1, 199007/357],
