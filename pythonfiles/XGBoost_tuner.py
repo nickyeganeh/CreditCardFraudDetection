@@ -28,7 +28,7 @@ params = {"n_estimators" : [100, 200, 300],
 		"colsample_bytree" : [ 0.3, 0.4, 0.5 , 0.7],
 		"tree_method" : ["hist", "auto"]}
 
-grid = GridSearchCV(model, params, scoring = "f1_weighted", n_jobs = 4)
+grid = GridSearchCV(estimator = model, param_grid = params, scoring = "f1_weighted", n_jobs = 4)
 grid.fit(pipline_X_train, pipeline_y_train)
 print("<<< GRIDSEARCH COMPLETE >>>")
 
