@@ -4,7 +4,7 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 import joblib
 from imblearn.pipeline import Pipeline
-from imblearn.oversampling import SMOTE
+from imblearn.over_sampling import SMOTE
 
 print("<<< LOADING TRAINING DATA >>>")
 # TRAIN AND TEST DATA
