@@ -15,7 +15,7 @@ print("<<< TRAINING DATA LOADED >>>")
 print("<<< PERFORMING GRIDSEARCH >>>")
 model = Pipeline([
         ('sampling', SMOTE()),
-        ('classification', XGBClassifier(booster = gbtree))
+        ('classification', XGBClassifier(booster = 'gbtree'))
     ])
 
 params = {"n_estimators"   : [100, 200, 300],
