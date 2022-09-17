@@ -15,12 +15,17 @@ print("<<< TRAINING DATA LOADED >>>")
 print("<<< PERFORMING GRIDSEARCH >>>")
 model = Pipeline([
         ('sampling', SMOTE()),
-        ('classification', XGBClassifier())
+        ('classification', XGBClassifier(booster = gbtree))
     ])
 
-params = {"n_estimators" : [100, 200, 300],
-        "scale_pos_neg" : [1, 199007/357],
-        "tree_method" : ["hist", "auto"]}
+params = {"n_estimators"   : [100, 200, 300],
+        "scale_pos_neg"    : [1, 199007/357],
+        "tree_method"      : ["hist", "auto"],
+        "learning_rate"    : [0.05, 0.10, 0.15, 0.20, 0.25, 0.30],
+        "max_depth"        : [ 3, 4, 5, 6, 8, 10, 12, 15],
+        "min_child_weight" : [ 1, 3, 5, 7 ],
+        "gamma"            : [ 0.0, 0.1, 0.2 , 0.3, 0.4 ],
+        "colsample_bytree" : [ 0.3, 0.4, 0.5 , 0.7 ]}
 
 grid = GridSearchCV(estimator = model, param_grid = params, scoring = "f1_weighted", n_jobs = 4)
 grid.fit(pipeline_X_train, pipeline_y_train)
