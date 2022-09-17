@@ -20,7 +20,6 @@ model = Pipeline([
 
 params = {"n_estimators" : [100, 200, 300],
         "scale_pos_neg" : [1, 199007/357],
-        "min_split_loss" : [ 0.0, 0.1, 0.2 , 0.3, 0.4],
         "tree_method" : ["hist", "auto"]}
 
 grid = GridSearchCV(estimator = model, param_grid = params, scoring = "f1_weighted", n_jobs = 4)
