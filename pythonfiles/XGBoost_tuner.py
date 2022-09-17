@@ -5,6 +5,8 @@ from sklearn.model_selection import GridSearchCV
 import joblib
 from imblearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE
+import warnings
+warnings.filterwarnings("ignore")
 
 print("<<< LOADING TRAINING DATA >>>")
 # TRAIN AND TEST DATA
