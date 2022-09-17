@@ -20,7 +20,7 @@ model = Pipeline([
 
 params = {"n_estimators" : [100, 200, 300],
         "scale_pos_neg" : [1, 199007/357],
-        "learning_rate" : [0.05, 0.10, 0.15, 0.20, 0.25, 0.30], 
+        "eta" : [0.05, 0.10, 0.15, 0.20, 0.25, 0.30], 
         "max_depth" : [ 3, 4, 5, 6, 8, 10, 12, 15],
         "min_child_weight" : [ 1, 3, 5, 7],
         "min_split_loss" : [ 0.0, 0.1, 0.2 , 0.3, 0.4],
