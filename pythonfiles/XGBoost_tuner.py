@@ -9,7 +9,7 @@ from imblearn.over_sampling import SMOTE
 print("<<< LOADING TRAINING DATA >>>")
 # TRAIN AND TEST DATA
 pipeline_X_train = pd.read_csv("../train-test_data/pipeline_X_train.csv")
-pipline_y_train = pd.read_csv("../train-test_data/pipline_y_train.csv").Class
+pipeline_y_train = pd.read_csv("../train-test_data/pipline_y_train.csv").Class
 print("<<< TRAINING DATA LOADED >>>")
 
 print("<<< PERFORMING GRIDSEARCH >>>")
@@ -28,7 +28,7 @@ params = {"n_estimators" : [100, 200, 300],
 		"tree_method" : ["hist", "auto"]}
 
 grid = GridSearchCV(estimator = model, param_grid = params, scoring = "f1_weighted", n_jobs = 4)
-grid.fit(pipline_X_train, pipeline_y_train)
+grid.fit(pipeline_X_train, pipeline_y_train)
 print("<<< GRIDSEARCH COMPLETE >>>")
 
 print("<<< SAVING GRID >>>")
