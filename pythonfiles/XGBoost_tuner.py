@@ -29,7 +29,7 @@ params = {"classification__n_estimators"   : [100, 200, 300],
         "classification__gamma"            : [ 0.0, 0.1, 0.2 , 0.3, 0.4 ],
         "classification__colsample_bytree" : [ 0.3, 0.4, 0.5 , 0.7 ]}
 
-grid = RandomSearchCV(estimator = model, 
+grid = RandomizedSearchCV(estimator = model, 
                     param_grid = params, 
                     scoring = "f1_weighted",
                     n_iter = 250,
