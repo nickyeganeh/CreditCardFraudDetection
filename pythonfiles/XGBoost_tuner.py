@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd 
 from xgboost import XGBClassifier
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 import joblib
 from imblearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE
@@ -29,7 +29,12 @@ params = {"classification__n_estimators"   : [100, 200, 300],
         "classification__gamma"            : [ 0.0, 0.1, 0.2 , 0.3, 0.4 ],
         "classification__colsample_bytree" : [ 0.3, 0.4, 0.5 , 0.7 ]}
 
-grid = GridSearchCV(estimator = model, param_grid = params, scoring = "f1_weighted", n_jobs = 4)
+grid = RandomSearchCV(estimator = model, 
+                    param_grid = params, 
+                    scoring = "f1_weighted",
+                    n_iter = 250,
+                    cv = 5, 
+                    n_jobs = 4)
 grid.fit(pipeline_X_train, pipeline_y_train)
 print("<<< GRIDSEARCH COMPLETE >>>")
 
