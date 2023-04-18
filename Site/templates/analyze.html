@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fraud Detection Tool</title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			padding: 20px;
+			background-color: #f2f2f2;
+		}
+
+		h1 {
+			color: #333;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		h2 {
+			color: #666;
+			margin-top: 40px;
+			margin-bottom: 20px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 40px;
+		}
+
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		th {
+			background-color: #f2f2f2;
+			color: #666;
+		}
+
+		td {
+			color: #333;
+		}
+
+		form {
+			margin-top: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		button {
+			padding: 8px 16px;
+			background-color: #333;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 20px;
+		}
+
+		button:hover {
+			background-color: #666;
+		}
+
+		button.valid {
+		  background-color: green;
+		  color: white;
+		}
+
+		button.fraud {
+		  background-color: red;
+		  color: white;
+		}
+
+		form.sideways {
+			margin-top: 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+        	display: inline-block;
+
+    	}
+
+        .error-message {
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+	</style>
+</head>
+<body>
+	<h1>
+		Prediction Result:
+		{% if result == 1 %}
+		Fraud
+		{% else %}
+		Valid
+		{% endif %}
+		<br>
+		Probability of Fraud: {{ fraud_probability }}%
+	</h1>
+
+
+	<h2>Transaction Information:</h2>
+	<table>
+		<tr>
+			<th>Distance from Home</th>
+			<td>{{ transaction.distance_from_home }}</td>
+		</tr>
+		<tr>
+			<th>Distance from Last Transaction</th>
+			<td>{{ transaction.distance_from_last_transaction }}</td>
+		</tr>
+		<tr>
+			<th>Ratio to Median Purchase Price</th>
+			<td>{{ transaction.ratio_to_median_purchase_price }}</td>
+		</tr>
+		<tr>
+			<th>Repeat Retailer</th>
+			<td>{{ transaction.repeat_retailer }}</td>
+		</tr>
+		<tr>
+			<th>Used Chip</th>
+			<td>{{ transaction.used_chip }}</td>
+		</tr>
+		<tr>
+			<th>Used PIN</th>
+			<td>{{ transaction.used_pin }}</td>
+		</tr>
+		<tr>
+			<th>Online Order</th>
+			<td>{{ transaction.online_order }}</td>
+		</tr>
+	</table>
+
+	<div style="text-align: center;">
+		<form class="sideways" action="/save_transaction_as_valid" method="POST">
+			<button type="submit" class="valid">Add Transaction to Database as Valid</button>
+		</form>
+
+		<form class="sideways" action="/save_transaction_as_fraud" method="POST">
+			<button type="submit" class="fraud">Add Transaction to Database as Fraud</button>
+		</form>
+
+		<form class="sideways" action="/view_database" method="POST">
+			<button type="submit">View Database</button>
+		</form>
+	</div>
+
+	{% if message %}
+	<div class="error-message">{{ message }}</div>
+	{% endif %}
+
+	<form action="/">
+		<button type="submit">Back to home page</button>
+	</form>
+
+</body>
+</html>

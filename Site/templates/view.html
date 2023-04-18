@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Database</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #666;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #666;
+        }
+
+        td {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+            button:hover {
+                background-color: #666;
+            }
+
+        .btn-clear {
+            margin-left: 10px;
+        }
+
+        form.sideways {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            display: inline-block;
+        }
+
+        .clear {
+            background-color: red;
+        }
+
+        .download {
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Transaction Database</h1>
+    <hr />
+    <div style="text-align: center;">
+        <form class="sideways" action="/">
+            <button type="submit" class="valid">Back to Home Page</button>
+        </form>
+
+        <form class="sideways" action="/clear_database" method="POST">
+            <button type="submit" class="clear">Clear Database</button>
+        </form>
+
+        <form class="sideways" action="/download_database" method="POST">
+            <button type="submit" class="download">Download Database as CSV</button>
+        </form>
+    </div>
+
+    <br />
+    <hr />
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Distance from Home</th>
+                <th>Distance from Last Transaction</th>
+                <th>Ratio to Median Purchase Price</th>
+                <th>Repeat Retailer</th>
+                <th>Used Chip</th>
+                <th>Used PIN</th>
+                <th>Online Order</th>
+                <th>Fraud</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction['id'] }}</td>
+                <td>{{ transaction['distance_from_home'] }}</td>
+                <td>{{ transaction['distance_from_last_transaction'] }}</td>
+                <td>{{ transaction['ratio_to_median_purchase_price'] }}</td>
+                <td>{{ transaction['repeat_retailer'] }}</td>
+                <td>{{ transaction['used_chip'] }}</td>
+                <td>{{ transaction['used_pin'] }}</td>
+                <td>{{ transaction['online_order'] }}</td>
+                <td>{% if transaction['fraud'] == 1 %}Fraud{% else %}Valid{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

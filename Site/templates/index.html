@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Credit Card Fraud Tool</title>
+	
+	<style>
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f2f2f2;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+
+		label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="tel"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 3px;
+			border: none;
+			margin-bottom: 10px;
+			box-sizing: border-box;
+		}
+
+		.checkbox-group {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.checkbox-group label {
+			margin-right: 10px;
+		}
+
+		input[type="checkbox"] {
+			margin-right: 10px;
+			transform: scale(1.5);
+		}
+
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+
+		.checkbox-group label {
+  			display: inline-block;
+ 			margin-right: 10px;
+		}
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+		p {
+			text-align: center;
+		}
+
+	</style>
+</head>
+
+<body>
+	<h1>Fraud Detection Tool</h1>
+	<p>This tool is designed to let you interact with a machine learning model that predicts whether a transaction is fradulent.</p>
+
+
+	<form method="post" action="/analyze">
+		<label for="distance_from_home">Distance from home:</label>
+		<input type="text" id="distance_from_home" name="distance_from_home"><br>
+
+		<label for="distance_from_last_transaction">Distance from last transaction:</label>
+		<input type="text" id="distance_from_last_transaction" name="distance_from_last_transaction"><br>
+
+		<label for="ratio_to_median_purchase_price">Ratio to median purchase price:</label>
+		<input type="text" id="ratio_to_median_purchase_price" name="ratio_to_median_purchase_price"><br>
+
+		<div class="checkbox-group">
+			<label>Was this a repeat retailer?</label>
+			<input type="radio" id="repeat-yes" name="repeat" value="yes">
+			<label for="repeat-yes">Yes</label>
+			<input type="radio" id="repeat-no" name="repeat" value="no">
+			<label for="repeat-no">No</label>
+		</div>
+
+		<div class="checkbox-group">
+			<label>Was the chip used?</label>
+			<input type="radio" id="chip-yes" name="chip" value="yes">
+			<label for="chip-yes">Yes</label>
+			<input type="radio" id="chip-no" name="chip" value="no">
+			<label for="chip-no">No</label>
+		</div>
+
+		<div class="checkbox-group">
+			<label>Was the PIN used?</label>
+			<input type="radio" id="pin-yes" name="pin" value="yes">
+			<label for="pin-yes">Yes</label>
+			<input type="radio" id="pin-no" name="pin" value="no">
+			<label for="pin-no">No</label>
+		</div>
+
+		<div class="checkbox-group">
+			<label>Was this an online order?</label>
+			<input type="radio" id="online-yes" name="online" value="yes">
+			<label for="online-yes">Yes</label>
+			<input type="radio" id="online-no" name="online" value="no">
+			<label for="online-no">No</label>
+		</div>
+
+		<input type="submit" value="Analyze">
+	</form>
+	{% if error %}
+	<div class="error-message">{{ error }}</div>
+	{% endif %}
+
+
+</body>
+</html>
